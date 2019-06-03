@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="http://10.0.0.199/staff-only/css/xmlspawner.css" type="text/css">
+</head>
+<body>
+
+<!-- TITLE OF XML SPAWNER RESOURCE -->
+<span class="header101"> PLAYING SOUNDS </span>
+ <br> <br> <br>
+
+<!-- EXPLANATION OF XML SPAWNER RESOURSE -->
+
+<span class="enhanced_text_01">
+	SOUND,value keyword
+</span> <br> <br>
+
+will play a sound to nearby players. If this keyword is used as part of an item/mob spawn spec then the sound is played at the location of the item or mob. 
+For example to spawn a grunting orc that also says something, use the spawn entry
+ <br> <br>
+ 
+<span class="enhanced_text_01">
+	orc/MSG/Die human!/SOUND,1068
+</span> <br> <br>
+
+The SOUND keyword can also be spawned alone to simply provide sound effects.
+ <br> <br>
+ 
+For example, to continuous play a set of sounds when a player comes within range you could use a spawner entry like this
+ <br> <br>
+ 
+<span class="enhanced_text_01">
+	SOUND,26
+</span> <br> <br>
+
+With a small Min/MaxDelay and ProximityRange set to some value >= 0. Or change the spawn entry to something like this instead
+ <br> <br>
+ 
+ <span class="enhanced_text_01">
+	SOUND,{RNDLIST,15,16,17,18,19,25,26,27,28,29,30,31,32,33}
+</span> <br> <br>
+
+To play a random sound selected from the list.
+ 
+<br> <br>
+	<hr size="5" color="black">
+<br> <br>
+
+<span class="header101"> PLAYING MUSIC </span>
+ <br> <br>
+ 
+<span class="enhanced_text_01">
+	MUSIC,musicname[,range]
+</span> <br> <br>
+
+Keyword lets you play music when it is spawned. It will override any ongoing ambient regional music that might be playing but will only briefly interrupt, not replace, the combat music if a player is in combat mode (that already overrides regional music). 
+You can also specify music numbers directly in place of the musicname argument. So for example MUSIC,9 can be used instead of MUSIC,Britain1. This also allows access to the new ML music values from 51-66 that are not yet defined in the MusicName enum.
+ <br> <br>
+This can be used to add additional ambience to triggered events, such as playing 
+
+<span class="enhanced_text_01">
+	MUSIC,Victory 
+</span> <br> <br>
+
+Upon completion of a quest, or 
+ <br> <br>
+ 
+<span class="enhanced_text_01">
+	MUSIC,Death 
+</span> <br> <br>
+
+On triggering a nasty spawn. This can spawned on its own e.g. "MUSIC,Britain1" or added as part of a spawn spec e.g.
+
+<span class="enhanced_text_01">
+	orc/MUSIC,Death 
+</span> <br> <br>
+
+So that individual spawns could have their own music associated with them. See the MusicName enum in the docs for list of available musicnames. 
+There are some pieces of music (I think the non-repeating pieces like Death and Victory) that dont seem to be able to be played directly one after the other without playing a continous piece (such as the regional pieces Britain1, Britain2, or other background pieces such as Combat1, Tavern01, etc.)
+ <br> <br>
+When the optional range argument is given, then the music will be sent to all players within the specified range when it is triggered. Otherwise, by default,only the triggering player receives the music.
+ 
+ <br> <br>
+	<hr size="5" color="black">
+<br> <br>
+
+The MusicName enums from the docs\types\MusicName.html are listed below. Note, these are the enum values as defined in the core. 
+ <br> <br> <br>
+
+MusicName (Enum) <br>
+<span class="padding01">OldUlt01 = 0</span> <br>
+<span class="padding01">Create1 = 1</span> <br>
+<span class="padding01">DragFlit = 2</span> <br>
+<span class="padding01">OldUlt02 = 3</span> <br>
+<span class="padding01">OldUlt03 = 4</span> <br>
+<span class="padding01">OldUlt04 = 5</span> <br>
+<span class="padding01">OldUlt05 = 6</span> <br>
+<span class="padding01">OldUlt06 = 7</span> <br>
+<span class="padding01">Stones2 = 8</span> <br>
+<span class="padding01">Britain1 = 9</span> <br>
+<span class="padding01">Britain2 = 10</span> <br>
+<span class="padding01">Bucsden = 11</span> <br>
+<span class="padding01">Jhelom = 12</span> <br>
+<span class="padding01">LBCastle = 13</span> <br>
+<span class="padding01">Linelle = 14</span> <br>
+<span class="padding01">Magincia = 15</span> <br>
+<span class="padding01">Minoc = 16</span> <br>
+<span class="padding01">Ocllo = 17</span> <br>
+<span class="padding01">Samlethe = 18</span> <br>
+<span class="padding01">Serpents = 19</span> <br>
+<span class="padding01">Skarabra = 20</span> <br>
+<span class="padding01">Trinsic = 21</span> <br>
+<span class="padding01">Vesper = 22</span> <br>
+<span class="padding01">Wind = 23</span> <br>
+<span class="padding01">Yew = 24</span> <br>
+<span class="padding01">Cave01 = 25</span> <br>
+<span class="padding01">Dungeon9 = 26</span> <br>
+<span class="padding01">Forest_a = 27</span> <br>
+<span class="padding01">InTown01 = 28</span> <br>
+<span class="padding01">Jungle_a = 29</span> <br>
+<span class="padding01">Mountn_a = 30</span> <br>
+<span class="padding01">Plains_a = 31</span> <br>
+<span class="padding01">Sailing = 32</span> <br>
+<span class="padding01">Swamp_a = 33</span> <br>
+<span class="padding01">Tavern01 = 34</span> <br>
+<span class="padding01">Tavern02 = 35</span> <br>
+<span class="padding01">Tavern03 = 36</span> <br>
+<span class="padding01">Tavern04 = 37</span> <br>
+<span class="padding01">Combat1 = 38</span> <br>
+<span class="padding01">Combat2 = 39</span> <br>
+<span class="padding01">Combat3 = 40</span> <br>
+<span class="padding01">Approach = 41</span> <br>
+<span class="padding01">Death = 42</span> <br>
+<span class="padding01">Victory = 43</span> <br>
+<span class="padding01">BTCastle = 44</span> <br>
+<span class="padding01">Nujelm = 45</span> <br>
+<span class="padding01">Dungeon2 = 46</span> <br>
+<span class="padding01">Cove = 47</span> <br>
+<span class="padding01">Moonglow = 48</span> <br>
+<span class="padding01">Zento = 49</span> <br>
+<span class="padding01">TokunoDungeon = 50</span> <br>
+<span class="padding01">Invalid = -1</span> <br>
+
+<br> <br>
+	<hr size="5" color="black">
+<br> <br>
+
+<span class="padding01">DEFINING CUSTOM MUSIC</span>
+ <br> <br> <br>
+ 
+The MusicName enums are basically indices into the clients music configuration file in Music/Digital/config.txt
+That is where the music number (the value of the MusicName enum) is mapped into the corresponding mp3 file.
+ <br> <br>
+ 
+So when you refer to the Britain1 MusicName with,
+ <br> <br>
+ 
+ <span class="enhanced_text_01">
+	MUSIC,Britain1
+</span> <br> <br>
+
+It will map to entry 9 in the config.txt file (which points to the britainpos file by default).
+ <br> <br>
+To add your own custom music, add your own mp3 files and modify config.txt to map one of the music numbers to it, or just replace one of the existing mp3 files with your custom mp3.
+ <br> <br>
+Be sure to make a backup of config.txt and existing mp3s if you fiddle with it, otherwise you may have difficulty patching later on. 
+
+</body>
+</html>

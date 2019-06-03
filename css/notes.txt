@@ -1,0 +1,26 @@
+FORMATTING TEXT
+<u>  </u> = underlines text
+<b>  </b> = bolds text
+<u>  </u> = 
+
+
+CENTERS TEXT IN MIDDLE OF PAGE
+<center> </center>
+
+
+CREATES A LINE
+<hr size="10">
+
+
+CREATES PERFECT SPACING BETWEEN SUBJECTS WITH LINE BREAKS AND A LINE
+<br> <br>
+	<hr size="5" color="black">
+<br> <br>
+
+
+HYPER-LINK
+<a href="path/to/web/address/here" target="_blank">  </a>
+
+
+FORMATTING PLACEMENT OF HEADER FOR A NOTE
+* * * * NOTE * * * *

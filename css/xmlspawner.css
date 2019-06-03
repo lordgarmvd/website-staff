@@ -1,0 +1,23 @@
+/* 
+EASY LINK TO THIS PAGE
+
+<link rel="stylesheet" href="http://10.0.0.199/staff-only/css/xmlspawner.css" type="text/css">
+*/
+
+/* ALL DEFAULT PROPERTIES */
+body,td,th { font-family: Arial; font-size: 14px; width:600px; }
+body {margin-left: 10px; margin-top: 10px;}
+	a:link {text-decoration: none; color: #0000FF;}
+	a:visited {text-decoration: none;}
+	a:hover {text-decoration: none;}
+	a:active {text-decoration: none;}
+
+
+
+.header101 { font-size: 22px; font-weight: bold; }
+.header102 { font-size: 16px; font-weight: bold; }
+
+.enhanced_text_01 { padding-left: 5%; color: #FF0000; }
+.enhanced_text_02 { color: #FF0000; }
+
+.padding01 { padding: 5%; }

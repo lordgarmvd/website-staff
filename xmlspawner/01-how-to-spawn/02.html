@@ -1,0 +1,304 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="http://10.0.0.199/staff-only/css/xmlspawner.css" type="text/css">
+</head>
+<body>
+
+<!-- TITLE OF XML SPAWNER RESOURCE -->
+<span class="header101"> DISPLAYING CUSTOM GUMPS WITH THE "GUMP" KEYWORD </span>
+ <br> <br> <br>
+
+<!-- EXPLANATION OF XML SPAWNER RESOURSE -->
+The GUMP keyword allows you to display customized gumps in one of 6 different formats or types. The general syntax for the GUMP keyword is
+ <br> <br>
+ 
+<span class="enhanced_text_02">
+GUMP,title,typenumber[,gumpconstructor]/text
+</span> <br> <br>
+
+The title can be any string and is simply displayed at the top of the gump.
+ <br> <br>
+The typenumber specifies one of the 6 gump types available (0-5).
+ <br> <br>
+The optional gumpconstructor argument allows you to give the name of a custom gump constructor that you have scripted.
+ <br> <br>
+The text specification will depend on the type of gump being used.
+ <br> <br> <br>
+
+The GUMP keyword must be used either with XmlDialogs or with triggered spawners so that the gumps can be displayed to the triggering player.
+
+ <br> <br>
+	<hr size="5" color="black">
+ <br> <br>
+ 
+GUMP type 0 : Simple text display <br>
+GUMP type 0 is a simple text display gump with an "Okay" button. The response string is set to "done" after the Okay button is pressed and the gump is closed.
+ <br> <span class="enhanced_text_02">
+GUMP,Read this,0/This will simply display this text and prompt the user to press the button when they are done.
+</span>
+
+ <br> <br> <br>
+	<hr size="5" color="black">
+ <br> <br>
+ 
+GUMP type 1 : Yes/No choice <br>
+GUMP type 1 displays a gump with yes/no selections as well as an "Okay" button. The response string is set to either "yes" or "no" when the Okay button is pressed depending on the user selection.
+ <br> <span class="enhanced_text_02">
+GUMP,Make a choice,1/This will simply display this text and prompt the user to choose either yes or no and press the button when they are done.
+</span>
+
+ <br> <br> <br>
+	<hr size="5" color="black">
+ <br> <br>
+
+GUMP type 2 : User text entry <br>
+GUMP type 2 displays a gump with a text entry area and an "Okay" button. The response string is set to the text entered when the Okay button is pressed.
+ <br> <span class="enhanced_text_02">
+GUMP,What do you say,2/This will simply display this text and prompt the user to enter in a string and press the button when they are done.
+</span>
+
+ <br> <br> <br>
+	<hr size="5" color="black">
+ <br> <br>
+
+GUMP type 3 : Quest offer <br>
+GUMP type 3 will send a quest gump with accept or decline options. The response string is set to either "accept" or "decline" depending on the user choice.
+ <br> <span class="enhanced_text_02">
+GUMP,Do you accept this quest?,3/This will simply display this text and prompt the user to accept or decline the quest offer and press the button when they are done.
+</span>
+
+ <br> <br> <br>
+	<hr size="5" color="black">
+ <br> <br>
+
+GUMP type 4 : Multiple choice <br>
+Gump type 4 provides a convenient way of creating multiple-selection gumps in which the player must choose between one of several options.
+ <br>
+To use this new gump use a GUMP string like
+ <br> <span class="enhanced_text_02">
+GUMP,gumpname,4/maintext ; selection; response ; selection ; response 
+</span> <br> <br>
+So a specification like
+ <br> <span class="enhanced_text_02">
+GUMP,MyGump,4/This is the main text of the gump where you would put your main dialog ; End the dialog ; end ; Continue the dialog ; continue; Go eat some cheese; cheese
+</span> <br> <br>
+Would pop up a gump with the main text at the top followed by the three selections <br> 
+End the dialog <br>
+Continue the dialog <br>
+Go eat some cheese <br> <br>
+Selecting the first would produce the response string "end", the second would give "continue", the third "cheese".
+ <br> <br>
+If used in a spawner, the GumpState property would be set to those strings. If used with an XmlDialog npc, the strings would be processed as speech triggering text that could drive other keyword driven entries. 
+
+ <br> <br> <br>
+	<hr size="5" color="black">
+ <br> <br>
+ 
+GUMP type 5 : Fully configurable <br>
+GUMP type 5 is the most advanced and allows full dynamic ingame configuation of gumps with specifiable buttons, art, labels, and button responses. The syntax is
+ <br> <span class="enhanced_text_02">
+GUMP,name,5/width,height ; gumpitem ; response ; gumpitem ; response ...
+</span> <br> <br>
+The width and height will determine the size of the gump. The name is optional and will not appear anywhere in the gump.
+
+ <br> <br> <br>
+	<hr size="5" color="black">
+ <br> <br>
+ 
+The following gumpitems and their specification syntax are available....
+ <br> <br>
+BUTTON,gumpid,x,y <br>
+Will create a button with the specified gumpid art at the x,y location. Pressing the button will generate the response string that can be used to drive speech entries if used in an xmldialog attachment, or to drive a spawner by setting the GumpState to the response. 
+ <br> <br>
+RADIO,gumpid1,gumpid2,x,y[,initialstate] <br>
+Will place a radio button at the x,y location. gumpid1 is the gump art used when selected. gumpid2 is the art used when not selected. The initial state (true/false) of the button can optionally be specified.
+The response string associated with a selected radio button will be appended to the response string generated by any button press.
+ <br> <br>
+TEXTENTRY,x,y,width,height[,text][,textcolor] <br>
+Will place a text entry gumpitem at the specified x,y location and with the specified width and height with optional textcolor and starting text. Any text entered will be appended to the response string generated by any button press and radio button that might be selected.
+ <br> <br>
+LABEL,x,y,labelstring[,labelcolor] <br>
+Will place a label with the specified string and the optional color at the x,y location.
+ <br> <br>
+HTML,x,y,width,height,text <br>
+Will place a scrollable html text box with the specified text string and width and height at the x,y location.
+ <br> <br>
+IMAGE,gumpid,x,y[,hue] <br>
+Will place the specified gump art at the x,y location with the optional hue
+ <br> <br>
+IMAGETILED,gumpid,x,y,width,height <br>
+Will place the specified tiled gump art at the x,y location spanning the width,height area.
+ <br> <br>
+ITEM,itemid,x,y[,hue] <br>
+Will place the specified item art at the x,y location with the optional hue
+
+ <br> <br> <br>
+	<hr size="5" color="black">
+ <br> <br>
+
+For gumpitems that dont generate a response, just specify an empty response, e.g.
+ <br> <br>
+LABEL, 100, 50, Hello there ;;
+IMAGE, 0x2060, 100, 50 ;;
+IMAGETILED, 10460,50,50,100,23 ;;
+
+ <br> <br> <br>
+	<hr size="5" color="black">
+ <br> <br>
+ 
+For the button gumpitem, just specify a response string, e.g.
+ <br> <br>
+BUTTON, 2130,50,200 ; okay ;
+
+ <br> <br> <br>
+	<hr size="5" color="black">
+ <br> <br>
+ 
+Using gumps in XmlDialogs
+ <br> <br>
+By setting the Gump field in XmlDialog entries to a GUMP keyword string you can pop up gumps during npc interactions in which the response strings generated by the gump will be used as speech that can drive other XmlDialog entries, just as if the player had said them.
+ <br> <br>
+This allows you to mix speech-driven and gump-driven interactions in a .npc specification.
+
+ <br> <br> <br>
+	<hr size="5" color="black">
+ <br> <br>
+ 
+Using gumps in spawners
+ <br> <br>
+When gumps are used in a spawner by using the GUMP keyword in a spawner entry, the GumpState property of the spawner is set to the response string value when a response is generated by the gump.
+ <br> <br>
+Example 1: <br>
+An example of the use of the type 5 GUMP in an xmldialog specification can be found in keypad.npc that is included in the xmlextras package. 
+To try it out, just place keypad.npc in your default XmlQuestNPC folder. 
+To load up the demonstration, put the keypad.xml file in your default Spawns folder and do an "[xmlloadhere keypad.xml" which will create a sample door and chest with the keypad.npc attachment (hint - the code is 132).
+ <br>
+You can also just do "[loadnpc keypad" and target a lockable item, then approach the object as a player. This will add an xmldialog attachment configured with the keypad.npc file. 
+To delete the attachment when you are finished, do "[getatt" and target the object again, and select the attachment and then hit the delete button. 
+To view the attachment you can use "[xmledit" and target the object.
+ <br> <br>
+ 
+Example 2: <br>
+Another example is given in gumpdemo.xml. Just load it up with "[xmlloadhere gumpdemo.xml". You need to be a player to trigger it. It just pops up a dynamically configured gump with the various available elements displayed. 
+ <br> <br>
+ 
+Example 3: <br>
+htmldemo.xml was directly inspired by one of Alari's scripts to display html from a file into a gump. It makes a type 4 GUMP and displays the contents of a file into it using the GETFROMFILE keyword (you need to have extracted the welcome.txt file into your Spawns directory). The gump pops up when a player says 'help'. 
+
+ <br> <br> <br>
+	<hr size="20" color="black">
+ <br> <br>
+ 
+Would it be possible to use the GUMP type 2 (User text entry) to edit properties on items?
+ <br> <br>
+example: <br>
+<span class="enhanced_text_01"> GIVE/<katana/name/{RESPONSESTRING}> </span>
+ <br> <br> <br>
+
+I have added the ResponseString property on xmldialogs that lets you refer to the speech or triggering text for a dialog entry, so something like this would do what you wanted
+ <br> <br>
+<span class="enhanced_text_01"> GIVE/<katana/name/{GETONTHIS,ResponseString}> </span>
+ <br> <br>
+Note, that if you wanted the entry to depend on any entered text then you need to set the Keyword field to a wildcard (such as '*') or any other regular expression that matches what you are looking for. You might want something more restrictive than '*' to avoid special characters being used.
+ <br> <br>
+Here is an example .npc file that I called echo
+ <br>
+<?xml version="1.0" standalone="yes"?>
+<XmlQuestNPC>
+  <NPC>
+    <Running>True</Running>
+    <ProximityRange>3</ProximityRange>
+    <AllowGhost>False</AllowGhost>
+    <SpeechPace>10</SpeechPace>
+    <ResetTime>0.0833333333333333</ResetTime>
+    <SpeechEntries>2</SpeechEntries>
+  </NPC>
+  <SpeechEntry>
+    <EntryNumber>0</EntryNumber>
+    <ID>0</ID>
+    <Pause>1</Pause>
+    <PrePause>-1</PrePause>
+    <LockConversation>True</LockConversation>
+    <IgnoreCarried>False</IgnoreCarried>
+    <AllowNPCTrigger>False</AllowNPCTrigger>
+    <SpeechStyle>Regular</SpeechStyle>
+    <SpeechHue>-1</SpeechHue>
+  </SpeechEntry>
+  <SpeechEntry>
+    <EntryNumber>10</EntryNumber>
+    <ID>10</ID>
+    <Text>You said {GETONTHIS,responsestring}</Text>
+    <Keywords>*</Keywords>
+    <DependsOn>-1</DependsOn>
+    <Pause>1</Pause>
+    <PrePause>-1</PrePause>
+    <LockConversation>True</LockConversation>
+    <IgnoreCarried>False</IgnoreCarried>
+    <AllowNPCTrigger>False</AllowNPCTrigger>
+    <SpeechStyle>Regular</SpeechStyle>
+    <SpeechHue>-1</SpeechHue>
+  </SpeechEntry>
+</XmlQuestNPC>
+
+ <br> <br> <br>
+	<hr size="20" color="black">
+ <br> <br>
+ 
+Would there be a way to make the quester as you walk up and the npc says... <br>
+<span class="enhanced_text_01"> Would you like to try a riddle today? </span>
+ <br> <br>
+Then you say... <br>
+<span class="enhanced_text_01"> Yes,please,ok,sure whichever. </span>
+ <br> <br>
+Then gump 2 pops up with the riddle text and an entry box for your answer. 
+ <br>
+ If you get it right you get something if you get it wrong you can't try that riddle again. 
+ <br> <br> <br>
+ 
+Yes, the type 2 gump will prompt for text and the response string will be whatever the user enters.
+So you would make a dialog entry that has a keyword test for the correct answer and would hand out the reward.
+ <br> <br>
+For the wrong answer, create a dialog entry that has a keyword test for not giving the right answer. 
+ <br> <br>
+Note that the keyword strings can be regular expressions (see the jeweler.npc example), so you can use a keyword string like 
+ <br>
+<span class="enhanced_text_01"> (?!theanswer) </span> <br>
+
+That will match anything except the string "theanswer". Here is a site with more info on regular expressions 
+<a href="http://regular-expressions.info/tutorial.html" target="_blank">REGULAR EXPRESSIONS TUTORIAL</a>
+
+ <br> <br>
+ 
+To prevent triggering again if they give the wrong answer, I would add an attachment in the Action field of your answer dialog entries, and then test for that attachment either in the Condition field of your starting dialog entries, or in the NoTriggerOnCarried field of the xmldialog.
+You could use an xmlquestattachment, or just an xmldata attachment.
+ <br> <br>
+So use an Action like
+ <br> <br>
+<span class="enhanced_text_01"> SETONTRIGMOB/ATTACH/xmldata,wronganswer1 </span>
+ <br> <br>
+Then in your NoTriggerOnCarried field use something like
+<span class="enhanced_text_01"> ATTACHMENT,wronganswer1,xmldata </span>
+ <br> <br>
+If you wanted to test for the attachment in the Condition field for a single dialog entry use something like
+ <br> <br>
+<span class="enhanced_text_01"> GETONTRIGMOB,[ATTACHMENT,xmldata,wronganswer1,name]="wronganswer1" </span>
+ <br> <br> <br>
+	<hr size="5" color="black">
+ <br> <br>
+From xmlspawner2.txt <br> <br>
+Spawner triggering can be made dependent upon attachments on the triggering mob by using the "ATTACHMENT,name,type" string in the TriggerOnCarried or NoTriggerOnCarried properties.  This will make triggering dependent on attachments on the mob, or an attachment on an item equipped by the mob, or an attachment on an item in the top level of the mobs backpack (see attachtest1.xml for an example). 
+ <br> <br> <br>
+	<hr size="5" color="black">
+ <br> <br>
+From xmlspawner2.txt <br> <br>
+Modified the syntax for referencing attachments using the GET series of keywords. Whereever a property would normally be specified for those keywords, the new property keyword [ATTACHMENT,type,name,property] can be used.  For example, to read the value property on an xmlvalue attachment with the name XS on a triggering mob you would specify "GETONTRIGMOB,[ATTACHMENT,xmlvalue,XS,value]". The change involved using [] instead of <> for the ATTACHMENT delimiters.  This was to resolve a conflict with the use of the old syntax in conditional tests.  The example attachtest1.xml has been modified to reflect the change. 
+ <br> <br> <br>
+	<hr size="5" color="black">
+ <br> <br>
+
+ 
+</body>
+</html>
+

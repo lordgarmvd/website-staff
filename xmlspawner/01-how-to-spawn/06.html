@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="http://10.0.0.199/staff-only/css/xmlspawner.css" type="text/css">
+</head>
+<body>
+
+<!-- TITLE OF XML SPAWNER RESOURCE -->
+<span class="header101"> SET PROPERTIES ON SPAWNS </span>
+ <br> <br> <br>
+
+<!-- EXPLANATION OF XML SPAWNER RESOURSE -->
+The ability of xmlspawner to assign or change the properties of spawned objects at the time of spawning is one of the most basic and powerful features of the system
+ <br> <br>
+The general syntax for any spawn entry (the string that you enter into the spawner gump) is like this
+ <br> <br>
+ 
+<span class="enhanced_text_01">
+	objecttype/propertyname/value...
+</span> <br> <br>
+
+Where objecttype is the type of the item or mob that you wish to spawn, like 'rat' or 'ginseng'
+ <br> <br>
+ 
+The propertyname, is the name of any public property on the object. Typically these will be the properties that you see when you use the [props command on the object, but XmlSpawner actually has access to all public properties, whether or not they appear in the [props gump.
+ <br> <br>
+ 
+An example of some common properties that you might want to set would be Name or Hue. To set those you would use a spawn entry like
+ <br> <br>
+ 
+<span class="enhanced_text_01">
+	rat/name/Tooth Gnasher/hue/500
+</span> <br> <br>
+
+That will change the name of the rat to "Tooth Gnasher", and set the hue to 500.
+ <br> <br>
+ 
+Notice that you can set more than one property on a single line by just separating them with '/'.
+ <br> <br>
+ 
+The slash '/' is the general separator used by xmlspawner and is a special reserved character (dont use it in names or other strings etc.) 
+
+<br> <br>
+	<hr size="5" color="black">
+<br> <br>
+
+This will create a faction berserker of the Minax faction...
+ <br> <br>
+factionberserker/faction/minax
+
+<br> <br>
+	<hr size="5" color="black">
+<br> <br>
+
+This will create a breastplate called "Christian's Breastplate with 100 luck and other bonuses...
+ <br> <br>
+Platechest/name/Christian's Breastplate/hue/91/energybonus/5/firebonus/5/attributes.luck/100
+
+<br> <br>
+	<hr size="5" color="black">
+<br> <br>
+
+Making a spawner that creates a Marked Rune. I have the Description working, & Marked True, and Targetmap set. To set the PointDest variable to the destination I want... 
+ <br> <br>
+ 
+The general rule of thumb in setting properties like that is to first do a [get of the property, and then look at the format of the value returned and then format it in the same way when you try to set it. Point3D properties like locations have the format
+ <br> <br>
+ 
+ <span class="enhanced_text_01">
+	(x, y, z)
+</span> <br> <br>
+
+So in your case you would set it like
+ <br> <br>
+ 
+ <span class="enhanced_text_01">
+	recallrune/target/(5200, 1090, 1)/targetmap/trammel/marked/true/description/A fun spot
+</span>
+
+<br> <br>
+	<hr size="5" color="black">
+<br> <br>
+
+Is there a way set the spawn to give a special type of resource - to be gathered from that custom spawned creature so that the "special" resource can be used for a quest objective?
+ <br> <br>
+For example:
+ <br>
+I have a spawner of a black sheep in a meadow, I would like to have a quester gather wool from this sheep and return X# of this special wool to the quest giving NPC for a reward. 
+The trouble I am running into at this point is how to differentiate this black sheep's wool from the regular wool that can be gathered off the other sheep in the area. I would like them to ONLY be able to use this special wool in the collection process for the quest. It should not accept "stock wool".
+Being that it is not a loot item I am using, how would I set the spawned sheep up to give this special wool when using the skinning knife on him to shear him? Is this even possible to do without scripting a special sheep?
+ <br> <br> <br>
+ 
+To specify "special" items as collection objectives, you can use the additional optional property test argument to the COLLECT objective
+ <br> <br>
+ 
+ <span class="enhanced_text_01">
+	COLLECT,type,[count][,proptest].
+</span> <br> <br>
+
+For example,
+ <br> <br>
+ 
+<span class="enhanced_text_01">
+	COLLECT,wool,10,hue=250
+</span> <br> <br>
+
+Which would only collect wool of a certain color as the objective.
+ <br> <br>
+What gets generated when you shear the sheep is something that has to be scripted. Take a look at the sheep.cs script and the Carve method.
+ <br> <br>
+Note, you could easily make a generic mod to sheep.cs that would allow you to use an attachment to specify the wool color and so you wouldnt have to script special sheep for special wool.
+ <br> <br>
+Just make this change to the Carve method
+ <br> <br>
+Around line 30, change this... <br>
+&emsp; from.SendLocalizedMessage( 500452 ); // You place the gathered wool into your backpack. <br>
+&emsp; from.AddToBackpack( new Wool( Map == Map.Felucca ? 2 : 1 ) ); <br> <br>
+
+To this <br>
+&emsp; from.SendLocalizedMessage(500452); // You place the gathered wool into your backpack. <br>
+&emsp; //ARTEGORDONMOD <br>
+&emsp; // allow wool color to be specified using an xmlvalue attachment <br>
+&emsp; Item wool = new Wool(Map == Map.Felucca ? 2 : 1); <br>
+
+&emsp; XmlValue a = (XmlValue)XmlAttach.FindAttachment(this, typeof(XmlValue), "WoolColor"); <br>
+&emsp; if (a != null) <br>
+&emsp; { <br>
+&emsp; wool.Hue = a.Value; <br>
+&emsp; } <br>
+&emsp; from.AddToBackpack(wool); <br>
+ <br> <br>
+And add this to the beginning of the file <br>
+&emsp; using Server.Engines.XmlSpawner2;
+ <br> <br> <br>
+Then when you spawn the sheep, just give it the xmlvalue attachment with the wool color you want, like
+ <br>
+ 
+<span class="enhanced_text_01">
+	sheep/ATTACH/xmlvalue,WoolColor,250
+</span> <br> <br>
+
+If you wanted to just set the hue of the sheep on spawning, and then have the wool be the same color, just do this
+ <br> 
+&emsp; from.SendLocalizedMessage(500452); // You place the gathered wool into your backpack. <br>
+&emsp; //ARTEGORDONMOD <br>
+&emsp; // make wool color the same as the sheep <br>
+&emsp; Item wool = new Wool(Map == Map.Felucca ? 2 : 1); <br> <br>
+
+&emsp; wool.Hue = Hue; <br> <br>
+
+&emsp; from.AddToBackpack(wool); <br> <br>
+
+Then spawn the sheep like... <br>
+<span class="enhanced_text_01">
+	sheep/hue/250 
+</span> <br> <br>
+ 
+</body>
+</html>

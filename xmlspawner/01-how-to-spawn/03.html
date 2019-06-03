@@ -1,0 +1,184 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="http://10.0.0.199/staff-only/css/xmlspawner.css" type="text/css">
+</head>
+<body>
+
+<!-- TITLE OF XML SPAWNER RESOURCE -->
+<span class="header101"> DISPAYING MESSAGES </span>
+ <br> <br> <br>
+
+<!-- EXPLANATION OF XML SPAWNER RESOURSE -->
+There are several keywords that allow you to display messages in various ways. These messages can be displayed over particular objects (MSG or SAY keywords), they can be sent to individual players (SENDMSG keyword), or they can be broadcast to the entire shard (BCAST keyword).
+
+<br> <br>
+	<hr size="5" color="black">
+<br> <br>
+
+<span class="header102"> <u> USING THE MSG KEYWORD TO DISPLAY MESSAGES OVER OBJECTS </u> </span>
+ <br> <br>
+The MSG keyword can be used to display messages over mobs or items when they are spawned. 
+The syntax is 
+<br> <br>
+<span class="enhanced_text_01">
+	MSG[,probability][,hue]/text
+</span> <br> <br>
+
+The ASCIIMSG keyword is like MSG but uses ascii instead of unicode and supports an optional hue and font argument.
+ <br> <br>
+<span class="enhanced_text_01">
+	ASCIIMSG[,probability][,hue][,font]/text
+</span> <br> <br>
+
+So, for example, to spawn a lich that occasionally taunted you, you could use the spawn entry
+ <br> <br>
+<span class="enhanced_text_01">
+	lich/MSG,.5/All hope is lost/MSG,0.2/you feeble mortal/MSG/hahahahaa
+</span> <br> <br>
+
+<span class="enhanced_text_01">
+	lich/MSG,.5/All hope is lost/MSG,0.2/you feeble mortal/MSG/hahahahaa
+</span> <br> <br>
+
+To give you random combinations of messages such as "All hope is lost hahahahaa", or "feeble mortal hahahaha", or just "hahahahaa". 
+ <br> <br>
+Or the spawn entry
+ <br> <br>
+<span class="enhanced_text_01">
+	ham/MSG/a tasty morsel
+</span> <br> <br>
+
+Would place the message "a tasty morsel" above the ham when it was spawned.
+ <br> <br>
+Note, that because the switch/lever objects also use the same syntax for specifying properties on target items, you can use this keyword in conjunction with those items. 
+So, for example, you could have a lever that opened a door, and also displayed a message over the door indicating it had opened using the target item property string "/locked/false/MSG/the door magically opens".
+
+<br> <br>
+	<hr size="5" color="black">
+<br> <br>
+
+<span class="header102"> <u> MESSAGE KEYWORD USING SET SERIES OF KEYWORDS </u> </span>
+ <br> <br>
+You can also use the MSG keyword together with the SET series of keywords such as SETONTRIGMOB, to display messages over specific target objects.
+ <br> <br>
+For example, to display a message over the head of a player that triggered a spawner you could use a spawn entry like
+ <br> <br>
+<span class="enhanced_text_01">
+	SETONTRIGMOB/MSG/You have set off the trap!
+</span> <br> <br>
+
+To display a message over an object that was already spawned you could use a spawn entry like
+ <br> <br>
+ <span class="enhanced_text_01">
+	SETONSPAWN,1/MSG/Now I'm really angry...
+</span> <br> <br>
+
+That would display the message over all of the existing spawns in subgroup 1 of the spawner.
+ <br> <br>
+To display a message over a specific named item, you could use something like
+ <br> <br>
+ <span class="enhanced_text_01">
+	SET,Mystic Sword,longsword/MSG/The sword begins to glow....
+</span> <br> <br>
+
+That would display the message over the longsword named "Mystic Sword"
+ <br> <br>
+or
+ <br> <br>
+ <span class="enhanced_text_01">
+	SETONMOB,Mr Friendly,Balron/MSG/Ah, lunch is served...
+</span> <br> <br>
+
+That would display the message over the balron named "Mr Friendly"
+
+<br> <br>
+	<hr size="5" color="black">
+<br> <br>
+
+<span class="header102"> <u> USING THE SAY KEYWORD TO DISPLAY MESSAGES OVER CREATURES </u> </span>
+ <br> <br>
+
+The SAY keyword is very similar to the MSG keyword and can be used to display messages over mobs when they are spawned. 
+The syntax is 
+ <br> <br>
+<span class="enhanced_text_01">
+	SAY[,probability]/text
+</span> <br> <br>
+
+The difference between the MSG and SAY keywords is that MSG displays ascii, while SAY displays unicode.
+
+<br> <br>
+	<hr size="5" color="black">
+<br> <br>
+ 
+<span class="header102"> <u> USING THE SENDMSG KEYWORD </u> </span>
+ <br> <br>
+The SENDMSG keyword sends a message to the triggering mob. 
+The syntax is 
+ <br> <br>
+ <span class="enhanced_text_01">
+	SENDASCIIMSG[,hue][,font]/text
+</span> <br> <br>
+
+This keyword can be used as a standalone keyword (it can be the first and only thing in a spawn entry)
+ <br> <br>
+The SENDASCIIMSG keyword that is like SENDMSG but uses ascii instead of unicode and supports an optional hue and font argument.
+ <br> <br>
+ <span class="enhanced_text_01">
+	SENDASCIIMSG[,hue][,font]/text
+</span>
+
+<br> <br>
+	<hr size="5" color="black">
+<br> <br>
+
+<span class="header102"> <u> Using the BCAST keyword </u> </span>
+ <br> <br>
+The BCAST keyword sends shardwide messages to all players. The syntax is
+ <br> <br>
+<span class="enhanced_text_01">
+	BCAST/message
+</span> <br> <br>
+
+This keyword can be used as a standalone keyword (it can be the first and only thing in a spawn entry) 
+
+<br> <br>
+	<hr size="20" color="black">
+<br> <br>
+
+Hello all,
+ <br>
+i have another (maybye stupid question). 
+ <br>
+I want spawn NPC wich will triggering a distance from players and when the players will a closer then 3 fields, the NPC will telling some text. I tryed used all examples from this topic, bud they didnt work. Does anyone have a known solution to this problem yet?
+ <br> <br> <br>
+
+Set the spawner for the npc with the ProximityRange set to the distance at which you want it to detect players before spawning.
+ <br> <br>
+Then you can have an XmlDialog attachment on the npc that handles the conversation set with a ProximityRange of 3 to detect players at a shorter distance.
+ <br> <br>
+So spawn the npc like
+ <br> <br>
+<span class="enhanced_text_01">
+	banker/ATTACH/xmldialog,yournpcfile
+</span> <br> <br>
+
+Where the file named 'yournpcfile.npc' has the dialog that you want and the ProximityRange setting of 3.
+ <br> <br> <br>
+You could also just do this with 2 spawners.
+ <br>
+&emsp;1. Would spawn the npc with a longer ProximityRange setting. Assign the npc to a subgroup.
+ <br>
+&emsp;2. Would have a shorter ProximityRange (like 3), and would spawn the entry
+ <br> <br>
+ 
+<span class="enhanced_text_01">
+	SETONSPAWN,npcspawnername,subgroup/SAY/Whatever you want them to say
+</span> <br> <br>
+
+Where 'npcspawner' name would be the name of the spawner for the npc, and 'subgroup' would be the subgroup number that you assigned your npc to. 
+
+</body>
+</html>

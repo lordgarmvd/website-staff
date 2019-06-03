@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="http://10.0.0.199/staff-only/css/xmlspawner.css" type="text/css">
+</head>
+<body>
+
+<!-- TITLE OF XML SPAWNER RESOURCE -->
+<span class="header101"> TRIGGER SPAWNS BASED ON </span>
+ <br>
+ <span class="header101"> PLAYERS SKILLS OR STATS </span>
+ <br> <br> <br>
+
+<!-- EXPLANATION OF XML SPAWNER RESOURSE -->
+If you would like to set up a spawner that can only be activated when a player with certain skills and/or stats comes within range, this is what you can do
+ <br> <br>
+1) make sure that it is set up for basic proximity triggering (ProximityRange >= 0)
+ <br> <br>
+2) you can set PlayerTriggerProp to test for whatever property you would like. For example, to test for the value of a skill you would use a string like
+skills.lumberjacking.value > 0
+ <br> <br>
+* * * * NOTE * * * * <br>
+That is skills-dot-lumberjacking-dot-value. It is the same property specification that you would use if you were using the [get or [xmlget command
+ <br> <br>
+* * * * EXAMPLE * * * * <br>
+"[get skills.lumberjacking.value" That is a good general diagnostic test for whether you are specifying a prop correctly. Just see what [get or [xmlget returns ([xmlget lets you see all public properties)
+ <br> <br>
+If you wanted a spawner that would test for the players Karma or Fame, just add a test like
+karma > 1000.
+ <br> <br>
+You can add compound tests, like 
+ <br>
+skills.spiritspeak.value > 50 & karma < 0 & fame > 2000
+ <br> <br>
+3) then you can either set the SpawnOnTrigger property to true, or use the min/maxdelay to set the time between triggering and spawning.
+ <br> <br>
+4) add the spawns that you would like to appear when the player comes into range to the spawner gump.
+ <br> <br>
+5) Press the 'Respawn' button on the spawner gump and the spawner should be prepared 
+
+
+</body>
+</html>

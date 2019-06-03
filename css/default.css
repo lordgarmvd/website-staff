@@ -1,0 +1,33 @@
+/* 
+EASY LINK TO THIS PAGE
+
+<link rel="stylesheet" href="http://54.39.96.55/staff-only/css/default.css" type="text/css">
+*/
+
+/* ALL DEFAULT PROPERTIES */
+body,td,th { font-family: Arial; font-size: 14px; width:800px; }
+body {margin-left: 5px; margin-top: 5px;}
+	a:link {text-decoration: none; color: #0000FF;}
+	a:visited {text-decoration: none;}
+	a:hover {text-decoration: none;}
+	a:active {text-decoration: none;}
+
+/* PADDING */
+.padding05 { padding: 05px;}
+.padding10 { padding: 10px;}
+.padding15 { padding: 15px;}
+.padding20 { padding: 20px;}
+.padding25 { padding: 25px;}
+.padding30 { padding: 30px;}
+.padding35 { padding: 35px;}
+
+/* MAIN PAGE */
+.header101 { font-size: 36px; font-weight: bold; }
+.header102 { font-size: 24px; font-weight: bold; color: #0026FF; }
+.header103 { font-size: 18px; font-weight: bold; }
+
+/* CONTENT */
+.header201 { font-size: 16px; font-weight: bold; }
+.header202 { font-size: 16px; font-weight: bold; padding: 20px; }
+
+ 

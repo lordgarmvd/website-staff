@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="http://10.0.0.199/staff-only/css/xmlspawner.css" type="text/css">
+</head>
+<body>
+
+<!-- TITLE OF XML SPAWNER RESOURCE -->
+<span class="header101"> CREATING LIMITED DURATION SPAWNS </span>
+ <br> <br> <br>
+
+<!-- EXPLANATION OF XML SPAWNER RESOURSE -->
+<br> <br>
+	<hr size="5" color="black">
+<br> <br>
+
+<span class="header102"> CREATING SPAWNS THAT ARE AUTOMATICALLY REMOVED AFTER SOME TIME BY SETTING THE DURATION PROPERTY </span>
+ <br> <br>
+Setting the Duration property allows spawned objects to be automatically deleted after some period of time. 
+By default, spawners have duration set to zero, which means infinite duration (the standard case). 
+The duration timer begins immediately after a spawn, and when the timer expires, all spawns on the spawner will be removed. 
+ <br> <br>
+ 
+<br> <br>
+	<hr size="5" color="black">
+<br> <br>
+
+<span class="header101"> Creating spawns with limited lifetime using the DespawnTime property </span>
+ <br> <br>
+The DespawnTime property specifies the maximum time in hours that a spawn can exist before being automatically deleted. By default this is set to zero which means the spawn will never be automatically deleted. Setting this to 24 hours will lead to spawns that get automatically refreshed every 24 hours. Note, this will work on both item and mobile spawns, but mobiles will not be deleted while players are around (an active zone). 
+ <br> <br>
+It can also be used to create limited duration spawns, much like using the Duration property, except that Duration must be less than the min/max delay period and allows very precise timing control (because it is run on a separate timer), while DespawnTime is only checked during Defrag (every min/max delay period), does not have a separate timer, and would therefore be used for longer time window despawning. 
+ <br> <br>
+When used with items that spawn in containers it would allow them to decay just as items on the ground normally would. 
+This could be used with triggered container spawns that you only wanted to last for a limited period of time before being removed so that the spawner could be triggered again. 
+ <br> <br>
+For example, you could set up a triggered spawner that filled a container with loot that was a function of the triggering players luck or fame, and then even if the player didnt take the loot it would only last a limited period of time and the spawner would be ready for triggering by another player.
+ <br> <br>
+ 
+ <br> <br>
+	<hr size="5" color="black">
+<br> <br>
+
+Example:
+ <br>
+Description of lootpack.xml from xmlextras:
+ <br>
+This spawns a container containing a lootpack triggered by a player coming into range. This is an example that demonstrates how the LOOTPACK keyword and the DespawnTime property can be combined to set up time-limited, luck-dependent spawns.
+ <br> <br>
+The spawner spawns a metal chest, ADDs an ultrarich lootpack that will depend on the luck of the triggering mob, makes it immovable, and hues the chest. It sets the DespawnTime property to 30 seconds, which means that after 30 seconds, the chest will disappear. The Min/MaxRefract properties are set for 2 mins, which means the spawner cannot be triggered again for 2 mins. ProximityMessage is also set announcing the appearance of the chest.
+ <br> <br>
+ 
+<div class="enhanced_text_02">
+Spawner (Lootpack#1) <br>
+metalchest/ADD/LOOTPACK,ultrarich/hue/1150/movable/false <br> <br>
+
+mindelay=0secs <br>
+maxdelay=0secs <br>
+proximity triggering enabled (range=5) <br>
+</div> <br> <br>
+
+</body>
+</html>

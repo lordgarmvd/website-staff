@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="http://10.0.0.199/staff-only/css/xmlspawner.css" type="text/css">
+</head>
+<body>
+
+<!-- TITLE OF XML SPAWNER RESOURCE -->
+<span class="header101"> TRIGGERING SPAWNS WHEN PLAYERS ARE NEARBY </span>
+ <br> <br> <br>
+
+<!-- EXPLANATION OF XML SPAWNER RESOURSE -->
+The ProximityRange property of the spawner sets the minimum distance (in tiles) a player has to be from the location of the spawner for it to be triggered. 
+ <br> <br>
+A value greater that zero means that the spawner will be triggered when player movement is detected within that range.
+ <br> <br>
+A value of 0 means the player must be at the exact location of the spawner. 
+ <br> <br>
+If a player does not move but is still within range, then the check for player proximity will only occur once every min/maxdelay period (this allows detection of stationary players).
+ <br> <br> 
+A value of -1 means that player movement triggering is disabled (the default value) and the spawner will just spawn automatically based on the min/maxdelay settings.
+ <br> <br>
+A value of -2 means that the spawner will not be triggered by player movement and will not spawn automatically. The only way to activate a spawner with this setting is to have the ProximityActivated property externally set to true. This setting is used to create spawners that are completely under external control.
+ <br> <br>
+If any other triggering features have been enabled (such as speech or skill triggering), those will also have to be satisfied for triggering to occur.
+ <br> <br>
+After a spawner has been triggered, then spawning is enabled and will occur according to the settings of the mindelay, maxdelay, duration, spawnrange, spawn probability, and other settings just as they would for normal spawning.
+ <br> <br>
+By setting the SpawnOnTrigger property to true, you can force spawning to occur immediately after triggering instead of waiting for the min/maxdelay period.
+
+<br> <br>
+	<hr size="5" color="black">
+<br> <br>
+ 
+<b>REFRACTORY PERIOD FOR TRIGGERING</b>
+ <br> <br>
+The RefractMin and RefractMax properties specify the period following triggering during which the spawner cannot be triggered again (the refractory period). 
+
+<br> <br>
+	<hr size="5" color="black">
+<br> <br>
+ 
+<b> TRIGGERING SOUND </b>
+ <br> <br>
+You can optionally specify a sound that will be played when the spawner is triggered by setting the ProximitySound property (default value = 500).
+The program InsideUO is useful in finding the values for particular sounds.
+
+<br> <br>
+	<hr size="5" color="black">
+<br> <br>
+ 
+<b> TRIGGERING MESSAGE </b>
+ <br> <br>
+You can optionally specify a message that will be displayed over the players head when the spawner is triggered by setting the ProximityMsg property (default value = null).
+ <br> <br>
+Example:
+ <br> <br>
+For example, setting up a spawner with 
+ <br> <br>
+ProximityRange = 2 <br>
+Min/MaxDelay = 3 seconds <br>
+RefractMin/Max = 10 mins <br>
+ProximityMsg = "Here it comes" <br>
+ProximitySound = 744 <br> <br>
+
+Will create a spawn that is triggered by a player within 2 squares of the spawner, with the spawn appearing 3 seconds after triggering, and cannot be retriggered for 10 mins.
+ <br> <br>
+When the spawn is triggered the message "Here it comes" will appear over the players head, and a drumbeat sound will be played. 
+
+
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="http://10.0.0.199/staff-only/css/xmlspawner.css" type="text/css">
+</head>
+<body>
+
+<!-- TITLE OF XML SPAWNER RESOURCE -->
+<span class="header101"> XML SPAWNER COMMAND LIST </span>
+ <br> <br> <br>
+
+<!-- EXPLANATION OF XML SPAWNER RESOURSE -->
+<span class="header102"> <b> <u> GENERAL SUPPORT COMMANDS </u> </b> </span>
+ <br> <br>
+<b> [XMLIMPORTMAP <MAPFILE OR DIRECTORY> </b> <br>
+Imports xmlspawners from a .map file. If a directory name is given, the all .map files in that directory and its subdirectories will be imported.
+ <br> <br>
+<b> [XMLIMPORTMSF <MSFFILE OR DIRECTORY> </b> <br>
+Imports xmlspawners from a .msf file. If a directory name is given, the all .msf files in that directory and its subdirectories will be imported.
+ <br> <br>
+<b> [XMLIMPORTSPAWNERS <FILENAME> </b> <br>
+Loads distro spawner xml files created with the [exportspawn command as xmlspawners.
+ <br> <br>
+<b> [XMLLOAD <SPAWNFILE OR DIRECTORY> [SPAWNERPREFIXFILTER] </b> <br>
+Loads XmlSpawners (replacing existing spawners with matching GUIDs) into the proper map as defined in the XML file supplied. If the SpawnerPrefixFilter string is specified, then only spawners with names that begin with that string will be loaded.
+ <br> <br>
+<b> [XMLLOADHERE <SPAWNFILE OR DIRECTORY> [SPAWNERPREFIXFILTER][-MAXRANGE RANGE] </b> <br>
+Loads XmlSpawners from the specified file or directory to the current map and location of the player. Spawners beyond maxrange (default=48 tiles) are not moved relative to the player and will be placed at their original location.
+ <br> <br>
+<b> [XMLNEWLOAD <SPAWNFILE OR DIRECTORY> [SPAWNERPREFIXFILTER] </b> <br>
+Loads XmlSpawners with new GUIDs (no replacement) into the current map of the player.
+ <br> <br>
+<b> [XMLNEWLOADHERE <SPAWNFILE OR DIRECTORY> [SPAWNERPREFIXFILTER][-MAXRANGE RANGE] </b> <br>
+Loads XmlSpawners with new GUIDs (no replacement) to the current map and location of the player. Spawners beyond maxrange (default=48 tiles) are not moved relative to the player.
+ <br> <br>
+<b> [XMLSPAWNERUNLOAD <SPAWNFILE OR DIRECTORY> [SPAWNERPREFIXFILTER]</b> <br>
+Alias: XmlUnload <br>
+UnLoads the XmlSpawners that are defined in the file supplied from the world.
+ <br> <br>
+<b> [XMLSPAWNERSAVE <SPAWNFILE> [SPAWNERPREFIXFILTER] </b> <br>
+Alias: XmlSave <br>
+Saves all XmlSpawners from the current map into the file supplied. If the SpawnerPrefixFilter string is specified, then only spawners with names that begin with that string will be saved.
+ <br> <br>
+<b> [XMLSPAWNERSAVEALL <SPAWNFILE> [SPAWNERPREFIXFILTER] </b> <br>
+Alias: XmlSaveAll <br>
+Saves all XmlSpawners in the entire world into the file supplied. If the SpawnerPrefixFilter string is specified, then only spawners with names that begin with that string will be saved.
+ <br> <br>
+<b> [XMLSET <PROPERTYNAME> <VALUE> </b> <br>
+Modifiers: Global, Online, Region, Contained, Multi, Area, Self <br>
+Sets a property value on a targeted object. Unlike the [set command, this provides access to all public properties, not just those visible via [props.
+ <br> <br>
+
+<b> [XMLSPAWNERHIDEALL </b> <br>
+Alias: XmlHide <br>
+Turns all xmlspawners back into crystals. <br> <br>
+
+<b> [XMLSPAWNERSHOWALL </b> <br>
+Alias: XmlShow <br>
+Turns all xmlspawners into blue ships mast for easy identification. <br> <br>
+
+<b> [XMLSPAWNERRESPAWN [SPAWNERPREFIXFILTER] </b> <br>
+Respawns all XmlSpawners from the current map. If the SpawnerPrefixFilter string is specified, then only spawners with names that begin with that string will be respawned.
+
+<b> [XMLSPAWNERRESPAWNALL [SPAWNERPREFIXFILTER] </b> <br>
+Respawns all XmlSpawners in the entire world. If the SpawnerPrefixFilter string is specified, then only spawners with names that begin with that string will be respawned.
+
+<b> [XMLSPAWNERWIPE [SPAWNERPREFIXFILTER] </b> <br>
+Removes all XmlSpawners from the current map. If the SpawnerPrefixFilter string is specified, then only spawners with names that begin with that string will be removed.
+
+<b> [XMLSPAWNERWIPEALL [SPAWNERPREFIXFILTER]  </b> <br>
+Removes all XmlSpawners from the entire world. If the SpawnerPrefixFilter string is specified, then only spawners with names that begin with that string will be removed.
+
+<b> [XMLFIND [TYPE] [RANGE] </b> <br>
+Search for spawners/items/mobs/attachments. The optional command-line argument to [xmlfind specifies an object type. So using the command 
+	[xmlfind orcishlord
+Will bring up the [xmlfind gump with the type field set to "orcishlord" instead of the default "Xmlspawner". Specifying the range argument will set the range (in tiles) for the search. Options can also be set in the main xmlfind gump.
+
+<b> [XMLEDIT </b> <br>
+Utility for editing XmlDialog specifications while ingame. This allows you to add or change npc dialog without having to create and load a .npc file. Just issue the command "[xmledit" and target an object with an XmlDialog attachment. If it does not have an attachment, you will be asked if you wish to add one. The editing gump is divided into four sections.
+	The top section allows you to change the overall properties of the attachment, such as triggering range, triggering conditions, and reset time.
+	The middle section allows you to view and select a specific speech entry for editing. Press the button to the left of the entry to select it. The checkboxs on the right are used to select entries for deletion. Check the boxes of entries you wish to delete and then press the Delete button at the bottom of the gump. You will be prompted to confirm deletion.
+	To add a new speech entry, just press the "Add" button at the bottom of the gump and a new empty entry will be added to the end of the entry list.
+	The lower section allows you to edit the selected entry. Enter in the new values. The changes will take effect the next time the gump is updated, either by selecting the "Refresh" button at the bottom of the gump, selecting another entry, or exiting the gump.
+	The bottom section contains buttons for Refreshing the XmlDialog, Adding a new speech entry, Deleting selected entries, Saving the XmlDialog specification to a .npc file, and paging through the speech entries.
+	The specification can be saved to a .npc file by entering in a filename in the "Save to file" text entry area and pressing the button next to it. The .npc extension will automatically be added. If the XmlDialog was loaded from an existing .npc file, that filename will be shown in the "Config:" field to the left of the Save option. This option is restricted to administrators. 
+
+<b> [LOADNPC <FILENAME> </b> <br>
+Loads the specified .npc file onto the targeted object allowing it to engage in interactive dialog. Do not add the .npc extension to the filename. For example, try "[loadnpc travelagent" and target a mob or item. You can now interact with the target according to the travelagent.npc file specification.
+
+<b> [SAVENPC <FILENAME> </b> <br>
+Saves the XmlDialog information on the targeted object to the specified .npc file. Do not add the .npc extension to the filename.
+
+<b> [STEALABLE [TRUE/FALSE] </b> <br>
+Sets/gets the stealable flag on any item
+
+<b> [OPTIMALSMARTSPAWNING [MAX SPAWN/HOMERANGE DIFF]  </b> <br>
+Automatically looks for XmlSpawners that are well-suited for smartspawning and enables that feature on them.
+
+<b> [SMARTSTAT [ACCESSLEVEL PLAYER/COUNSELOR/GAMEMASTER/SEER/ADMINISTRATOR] </b> <br>
+Displays xmlspawner usage statistics. The optional "accesslevel" argument to the [smartstat command allows you to change the smartspawning accesslevel setting. The current setting will also be displayed by the [smartstat command.  Use of this option is restricted to administrators by default.
+		Note -- this setting will not be saved across server restarts. 
+			For permanent change in the accesslevel setting, 
+			change the value of the static SmartSpawnAccessLevel 
+			variable in xmlspawner.cs
+
+<b> [EXPORTSPAWNER <FILENAME> </b> <br>
+Saves distro spawners to 'Saves/Spawners/filename'. This command can be used with the [global, [multi, [area modifiers to apply it to multiple spawners. e.g. the command
+
+<b> [GLOBAL EXPORTSPAWNER BLAH </b> <br>
+Will save all distro spawners to the file Saves/Spawners/blah
+
+<br> <br>
+	<hr size="5" color="black">
+<br> <br>
+
+<span class="header102"> <b> <u> [IMPORTSPAWNERS <FILENAME> </b> </u> <br> <br>
+Restores distro spawners from 'Saves/Spawners/filename'. 
+		Note -- this command does not check for duplication, so if you 
+			run it more than once you will end up with multiple spawners.
+	These spawns can also be imported back in as XmlSpawners by using the '[xmlimportspawners filename' command.
+
+[WHATISIT
+Reports the type and name of the target. This can be used by players or staff to provide information needed to set up quest objectives or any other situation where knowing the type and name of an object is needed.
+
+<br> <br>
+	<hr size="5" color="black">
+<br> <br>
+
+<span class="header102"> <b> <u> ATTACHMENT SUPPORT COMMANDS </b> </u> <br> <br>
+
+[ADDATT <ATTACHMENTTYPE> [ARGS]
+Allows attachments of the specified type to be added to targeted objects. For example, to have a door display a message whenever it is approached, you could do "[addatt xmlmessage Welcome!". To also have a sound played you could add "[addatt xmlsound 1048"
+
+[GETATT [TYPE]
+Allows the attachments on a targeted object to be listed. If the optional type argument is given, then only attachments of that type are displayed.
+
+[DELATT [TYPE][SERIAL]
+Allows attachments on a targeted object to be deleted. If no arguments are given, then all attachments on the object are deleted. If the type is specified, then only attachments of that type are deleted. If a serial number is specified, then the specific attachment with that serial number is deleted (use [getatt to see the serial numbers).
+
+[AVAILATT 
+Opens a gump that lists all of the available attachments and their various constructors and arguments. All constructors for objects derived from the XmlAttachment class and flagged with the [Attachable] attribute will be listed.
+
+<br> <br>
+	<hr size="5" color="black">
+<br> <br>
+
+<span class="header102"> <b> <u> QUEST SUPPORT COMMANDS </b> </u> <br> <br>
+
+[QUESTLOG
+Can be executed by players to bring up the quest log gump. The quest log gump contains a list of all completed and currently active quests as well as current point status and ranking. Completed quests will be next available time (helpful for time-limited repeatable quests) as well as the number of times the quest has been repeated. Active quests have an 'Open' button that allows the individual quest gump to be opened. The top quest players ranking can also be opened from the button at the bottom of the gump.
+
+[QUESTRANKING
+
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="http://10.0.0.199/staff-only/css/xmlspawner.css" type="text/css">
+</head>
+<body>
+
+<span class="header102"> <b> <u> ATTACHMENT SUPPORT COMMANDS </b> </u> <br> <br>
+
+[ADDATT <ATTACHMENTTYPE> [ARGS]
+Allows attachments of the specified type to be added to targeted objects. For example, to have a door display a message whenever it is approached, you could do "[addatt xmlmessage Welcome!". To also have a sound played you could add "[addatt xmlsound 1048"
+
+[GETATT [TYPE]
+Allows the attachments on a targeted object to be listed. If the optional type argument is given, then only attachments of that type are displayed.
+
+[DELATT [TYPE][SERIAL]
+Allows attachments on a targeted object to be deleted. If no arguments are given, then all attachments on the object are deleted. If the type is specified, then only attachments of that type are deleted. If a serial number is specified, then the specific attachment with that serial number is deleted (use [getatt to see the serial numbers).
+
+[AVAILATT 
+Opens a gump that lists all of the available attachments and their various constructors and arguments. All constructors for objects derived from the XmlAttachment class and flagged with the [Attachable] attribute will be listed.
+
+<br> <br>
+
+</body>
+</html>

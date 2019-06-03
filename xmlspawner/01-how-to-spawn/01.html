@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="http://10.0.0.199/staff-only/css/xmlspawner.css" type="text/css">
+</head>
+<body>
+
+<!-- TITLE OF XML SPAWNER RESOURCE -->
+<span class="header101">ADD ITEMS TO A SPAWNED MOB OR CONTAINER</span>
+ <br> <br> <br>
+
+<!-- EXPLANATION OF XML SPAWNER RESOURSE -->
+Just as you can set the properties on newly spawned objects, you can also add items to spawned mobs or containers.
+ <br> <br>
+The ADD keyword can be used to add items to the pack of a mob or into a container.
+The syntax for this keyword is
+ <br> <br>
+ 
+<span class="enhanced_text_01"> 
+	ADD[,probability]/itemtype
+</span> <br> <br>
+
+You can also add items and change their properties at the same time by using the special grouping characters '<' and '>'
+ <br> <br>
+ 
+<span class="enhanced_text_01"> 
+	ADD[,probability/<itemtype/propertyname/value...>
+</span> <br> <br>
+ 
+This will create the item, set the properties on it, and then add the result to the mob or container.
+ <br> <br>
+For example, to add a piece of armor to a spawned mobs pack you could use a spawn entry like
+ <br> <br>
+ 
+<span class="enhanced_text_01">
+orc/ADD/plategorget
+</span> <br> <br>
+
+To add it to a container is the same thing
+ <br> <br>
+ 
+<span class="enhanced_text_01">
+metalbox/ADD/plategorget
+</span> <br> <br>
+
+To add more than one item, just keep adding more ADD keywords
+ <br> <br>
+ 
+<span class="enhanced_text_01">
+orc/ADD/plategorget/ADD,0.3/gold,500
+</span> <br> <br>
+
+That will add both the gorget and 500 gold pieces, but the gold will only be added 30% of the time (probability of 0.3)
+ <br> <br>
+To set the hue of the gorget before adding it you would use the grouping brackets like
+ <br> <br>
+ 
+<span class="enhanced_text_01">
+orc/ADD/<plategorget/hue/500>/ADD/gold,500
+</span> <br> <br>
+
+A few things to note here. 
+ <br>
+1) The 'gold' is created using a constructor that takes a quantity argument (that's what the 500 is). This is possible because the 'gold' item actual has such a constructor defined for its class. Not all objects will have such a constructor available, and conversely, some objects will have other constructors that can take other arguments. You need to look at the documentation for a particular item class to know what is available and what is not.
+ <br> <br>
+2) if the grouping brackets were not used, then the Hue property would end up being set on the orc, instead of on the plategorget. 
+</body>
+</html>
