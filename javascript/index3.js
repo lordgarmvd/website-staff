@@ -1,2 +1,2 @@
 var img = document.createElement('img');
-img.src = 'img/eqp/' + this.apparel + '/' + this.facing + '_idle.png';
+img.src = 'https://lordgarmvd.github.io/website-staff/pictures/' + this.apparel + '/' + this.facing + '00.jpg';
