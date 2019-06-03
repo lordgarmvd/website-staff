@@ -5,7 +5,7 @@ EASY LINK TO THIS PAGE
 */
 
 /* ALL DEFAULT PROPERTIES */
-body,td,th { font-family: Arial; font-size: 14px; }
+body,td,th { font-family: Arial; font-size: 14px; font-color=#FFFFFF; background=000000; }
 body {margin-left: 5px; margin-top: 5px;}
 	a:link {text-decoration: none; color: #0000FF;}
 	a:visited {text-decoration: none;}
